@@ -1,0 +1,73 @@
+<svg width="169" height="228" viewBox="0 0 169 228" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="phone">
+<g id="Phone" filter="url(#filter0_d_3_8)">
+<rect x="25" y="18" width="118" height="193" rx="10" fill="white"/>
+</g>
+<g id="internal skeleton">
+<circle id="Ellipse 1" cx="38.5" cy="37.5" r="5.5" fill="#EBEBEB"/>
+<g id="hamburger">
+<line id="Line 1" x1="117" y1="32" x2="131" y2="32" stroke="#EBEBEB" stroke-width="2"/>
+<line id="Line 2" x1="117" y1="36" x2="131" y2="36" stroke="#EBEBEB" stroke-width="2"/>
+<line id="Line 3" x1="117" y1="40" x2="131" y2="40" stroke="#EBEBEB" stroke-width="2"/>
+</g>
+<g id="fauxtext">
+<rect id="Rectangle 2" x="35" y="53" width="35" height="8" fill="#EBEBEB"/>
+<rect id="Rectangle 3" x="74" y="53" width="35" height="8" fill="#EBEBEB"/>
+<rect id="Rectangle 6" x="115" y="53" width="19" height="8" fill="#EBEBEB"/>
+<rect id="Rectangle 7" x="35" y="65" width="19" height="8" fill="#EBEBEB"/>
+<rect id="Rectangle 4" x="99" y="65" width="35" height="8" fill="#EBEBEB"/>
+<rect id="Rectangle 5" x="60" y="65" width="35" height="8" fill="#EBEBEB"/>
+</g>
+<g id="Mountain4">
+<rect id="Rectangle 8" x="91" y="156" width="37" height="37" rx="5" fill="#EBEBEB"/>
+<path id="Vector 1" d="M91 180.243C91 179.447 91.3161 178.684 91.8787 178.121L98.8787 171.121C100.05 169.95 101.95 169.95 103.121 171.121L108.379 176.379C109.55 177.55 111.45 177.55 112.621 176.379L115.379 173.621C116.55 172.45 118.45 172.45 119.621 173.621L127.121 181.121C127.684 181.684 128 182.447 128 183.243V190C128 191.657 126.657 193 125 193H94C92.3431 193 91 191.657 91 190V180.243Z" fill="#ABA9A9"/>
+</g>
+<g id="Mountain3">
+<rect id="Rectangle 8_2" x="40" y="156" width="37" height="37" rx="5" fill="#EBEBEB"/>
+<path id="Vector 1_2" d="M40 180.243C40 179.447 40.3161 178.684 40.8787 178.121L47.8787 171.121C49.0503 169.95 50.9497 169.95 52.1213 171.121L57.3787 176.379C58.5503 177.55 60.4497 177.55 61.6213 176.379L64.3787 173.621C65.5503 172.45 67.4497 172.45 68.6213 173.621L76.1213 181.121C76.6839 181.684 77 182.447 77 183.243V190C77 191.657 75.6569 193 74 193H43C41.3431 193 40 191.657 40 190V180.243Z" fill="#ABA9A9"/>
+</g>
+<g id="Mountain2">
+<rect id="Rectangle 8_3" x="91" y="109" width="37" height="37" rx="5" fill="#EBEBEB"/>
+<path id="Vector 1_3" d="M91 133.243C91 132.447 91.3161 131.684 91.8787 131.121L98.8787 124.121C100.05 122.95 101.95 122.95 103.121 124.121L108.379 129.379C109.55 130.55 111.45 130.55 112.621 129.379L115.379 126.621C116.55 125.45 118.45 125.45 119.621 126.621L127.121 134.121C127.684 134.684 128 135.447 128 136.243V143C128 144.657 126.657 146 125 146H94C92.3431 146 91 144.657 91 143V133.243Z" fill="#ABA9A9"/>
+</g>
+<g id="Mountain1">
+<rect id="Rectangle 8_4" x="40" y="109" width="37" height="37" rx="5" fill="#EBEBEB"/>
+<path id="Vector 1_4" d="M40 133.243C40 132.447 40.3161 131.684 40.8787 131.121L47.8787 124.121C49.0503 122.95 50.9497 122.95 52.1213 124.121L57.3787 129.379C58.5503 130.55 60.4497 130.55 61.6213 129.379L64.3787 126.621C65.5503 125.45 67.4497 125.45 68.6213 126.621L76.1213 134.121C76.6839 134.684 77 135.447 77 136.243V143C77 144.657 75.6569 146 74 146H43C41.3431 146 40 144.657 40 143V133.243Z" fill="#ABA9A9"/>
+</g>
+</g>
+<g id="Bolts">
+<g id="sticker4">
+<circle id="Ellipse 2" cx="75.5" cy="109.5" r="8.5" fill="#33E098"/>
+<path id="Vector 3" d="M78 104H74.5L72 110.5H74.5L73.5 115.5L78.5 108.5H76L78 104Z" fill="white"/>
+</g>
+<g id="sticker3">
+<circle id="Ellipse 2_2" cx="126.5" cy="109.5" r="8.5" fill="#33E098"/>
+<path id="Vector 3_2" d="M129 104H125.5L123 110.5H125.5L124.5 115.5L129.5 108.5H127L129 104Z" fill="white"/>
+</g>
+<g id="sticker2">
+<circle id="Ellipse 2_3" cx="75.5" cy="158.5" r="8.5" fill="#33E098"/>
+<path id="Vector 3_3" d="M78 153H74.5L72 159.5H74.5L73.5 164.5L78.5 157.5H76L78 153Z" fill="white"/>
+</g>
+<g id="sticker1">
+<circle id="Ellipse 2_4" cx="126.5" cy="158.5" r="8.5" fill="#33E098"/>
+<path id="Vector 3_4" d="M129 153H125.5L123 159.5H125.5L124.5 164.5L129.5 157.5H127L129 153Z" fill="white"/>
+</g>
+<g id="sticker0">
+<rect id="buttonbase" x="51" y="78" width="67" height="15" rx="7.5" fill="#33E098"/>
+<path id="bolt" d="M87 80H83.5L81 86.5H83.5L82.5 91.5L87.5 84.5H85L87 80Z" fill="white"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_3_8" x="21" y="16" width="126" height="201" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_3_8"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_3_8" result="shape"/>
+</filter>
+</defs>
+</svg>

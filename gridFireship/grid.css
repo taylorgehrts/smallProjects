@@ -1,0 +1,16 @@
+.basic-grid {
+    display: grid;
+    gap: 1rem;
+
+
+    /* creates 12 fractional units or columns in this case */
+    grid-template-columns: repeat(1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr);
+    /* more readable but too skinny */
+    grid-template-columns: repeat(12, 1fr);
+    /* better sizing but overflows */
+    grid-template-columns: repeat(12, minMax(240px, 1fr));
+    /* oh yeah that does it good */
+    grid-template-columns: repeat(auto-fit, minMax(240px, 1fr));
+    /* note that auto-fill could also do something similar but it will add empty columns when there is more space rather than fitting the space with the columns we have   */
+}
+
