@@ -4,6 +4,32 @@ import * as THREE from "three";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const buildings = new URL("./public/AnimationAssets/buildingAttempt01.glb", import.meta.url)
+
+const loader = new GLTFLoader();
+
+
+//setting up the loading of the model from blender
+let mixer;
+loader.load("./public/AnimationAssets/buildingAttempt01.glb", function (gltf) {
+  const model = gltf.scene;
+  scene.add(model);
+  mixer = new THREE.AnimationMixer(model)
+  const clips = gltf.animations;
+  clips.forEach(function(clip) {
+    const action = mixer.clipAction(clip);
+    action.play();
+  })
+
+}, undefined, function (error) {
+
+  console.error(error);
+
+});
+
+
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(
@@ -26,37 +52,37 @@ renderer.render(scene, camera);
 
 const rainbow = new THREE.TextureLoader().load("rainbow.jpg");
 
-const geometry = new THREE.TorusGeometry(10, 1.2, 6, 32);
-//just the wire frame
-// const material = new THREE.MeshBasicMaterial( {color: 0xFF6347, wireframe: true});
-//real material... needs light to appear
-const material = new THREE.MeshStandardMaterial({
-  
-  metalness: 0.75,
-  transparent: true,
-  opacity: 0.99,
-  map: rainbow
-  
-  
-});
-const torus = new THREE.Mesh(geometry, material);
-torus.rotation.x = Math.PI / 2;
-// torus.rotateX(180)
+// const geometry = new THREE.TorusGeometry(10, 1.2, 6, 32);
+// //just the wire frame
+// // const material = new THREE.MeshBasicMaterial( {color: 0xFF6347, wireframe: true});
+// //real material... needs light to appear
+// const material = new THREE.MeshStandardMaterial({
 
-scene.add(torus);
+//   metalness: 0.75,
+//   transparent: true,
+//   opacity: 0.99,
+//   map: rainbow
 
-const geometry2 = new THREE.CylinderGeometry( 2, 4, 20, 7 ); 
-//just the wire frame
-// const material = new THREE.MeshBasicMaterial( {color: 0xFF6347, wireframe: true});
-//real material... needs light to appear
-const material2 = new THREE.MeshBasicMaterial({
-  color: 0xfffff3,
-  wireframe: true
-  
-});
-const shape = new THREE.Mesh(geometry2, material2);
 
-scene.add(shape);
+// });
+// const torus = new THREE.Mesh(geometry, material);
+// torus.rotation.x = Math.PI / 2;
+// // torus.rotateX(180)
+
+// scene.add(torus);
+
+// const geometry2 = new THREE.CylinderGeometry(2, 4, 20, 7);
+// //just the wire frame
+// // const material = new THREE.MeshBasicMaterial( {color: 0xFF6347, wireframe: true});
+// //real material... needs light to appear
+// const material2 = new THREE.MeshBasicMaterial({
+//   color: 0xfffff3,
+//   wireframe: true
+
+// });
+// const shape = new THREE.Mesh(geometry2, material2);
+
+// scene.add(shape);
 
 const pointLight = new THREE.PointLight(0xffffff, 20, 20, 1);
 pointLight.position.set(5, 5, 5);
@@ -87,24 +113,24 @@ Array(200).fill().forEach(addStar);
 
 //moon
 
-const moonTexture = new THREE.TextureLoader().load("moon.jpeg");
-const normalTexture = new THREE.TextureLoader().load("normalMap.jpg");
+// const moonTexture = new THREE.TextureLoader().load("moon.jpeg");
+// const normalTexture = new THREE.TextureLoader().load("normalMap.jpg");
 
-const moon = new THREE.Mesh(
-  new THREE.SphereGeometry(3, 32, 32),
-  new THREE.MeshStandardMaterial({
-    map: moonTexture,
-    normalMap: normalTexture,
-  })
-);
+// const moon = new THREE.Mesh(
+//   new THREE.SphereGeometry(3, 32, 32),
+//   new THREE.MeshStandardMaterial({
+//     map: moonTexture,
+//     normalMap: normalTexture,
+//   })
+// );
 
-scene.add(moon);
+// scene.add(moon);
 
-moon.position.z = 0;
-moon.position.y = 10;
-// moon.position.setX(-1)
+// moon.position.z = 0;
+// moon.position.y = 10;
+// // moon.position.setX(-1)
 
-function moveCamera(){
+function moveCamera() {
   const t = document.body.getBoundingClientRect().top
 
   camera.position.z = t * -0.01
@@ -120,18 +146,25 @@ const spaceTexture = new THREE.TextureLoader().load("newSpace.jpg");
 spaceTexture.colorSpace = THREE.SRGBColorSpace;
 scene.background = spaceTexture;
 
+
+const clock = new THREE.Clock();
 function animate() {
+  
   requestAnimationFrame(animate);
 
   // torus.rotation.x += 0.01;
   // torus.rotation.y += 0.01;
-  torus.rotation.z += 0.01;
+  // torus.rotation.z += 0.01;
 
-  shape.rotation.y += 0.01;
+  // shape.rotation.y += 0.01;
 
-  moon.rotation.y += 0.01;
+  // moon.rotation.y += 0.01;
 
   controls.update();
+  
+  
+  if (mixer) 
+    mixer.update(clock.getDelta());
 
   renderer.render(scene, camera);
 }
