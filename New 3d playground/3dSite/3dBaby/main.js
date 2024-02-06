@@ -15,23 +15,39 @@ const loader = new GLTFLoader();
 let mixer;
 loader.load("./public/AnimationAssets/buildingAttempt01.glb", function (gltf) {
   const model = gltf.scene;
+
+  // Iterate through materials and set them to MeshStandardMaterial
+  model.traverse((child) => {
+    if (child.isMesh) {
+      child.castShadow = true;
+      child.receiveShadow = true; // Enable receiving shadows
+      const standardMaterial = new THREE.MeshStandardMaterial({
+        metalness: 1,
+        roughness: 0.0, // Adjust as needed
+        color: "#9151a6", // Set your desired color
+      });
+
+      child.material = standardMaterial;
+    }
+  });
+
   scene.add(model);
-  mixer = new THREE.AnimationMixer(model)
+
+  mixer = new THREE.AnimationMixer(model);
   const clips = gltf.animations;
-  clips.forEach(function(clip) {
+  clips.forEach(function (clip) {
     const action = mixer.clipAction(clip);
     action.play();
-  })
-
+  });
 }, undefined, function (error) {
-
   console.error(error);
-
 });
 
 
+//create scene
 const scene = new THREE.Scene();
 
+//camera
 const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
@@ -39,18 +55,21 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
+camera.position.setZ(30);
+
+
+//render setup
 const renderer = new THREE.WebGL1Renderer({
   canvas: document.querySelector("#bg"),
 });
 
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Adjust as needed
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-
-camera.position.setZ(30);
-
 renderer.render(scene, camera);
 
-const rainbow = new THREE.TextureLoader().load("rainbow.jpg");
+// const rainbow = new THREE.TextureLoader().load("rainbow.jpg");
 
 // const geometry = new THREE.TorusGeometry(10, 1.2, 6, 32);
 // //just the wire frame
@@ -84,32 +103,62 @@ const rainbow = new THREE.TextureLoader().load("rainbow.jpg");
 
 // scene.add(shape);
 
-const pointLight = new THREE.PointLight(0xffffff, 20, 20, 1);
-pointLight.position.set(5, 5, 5);
+const pointLight = new THREE.PointLight(0xffffff, 200, 20, 1);
+pointLight.castShadow = true;
+pointLight.position.set(5, 5, 3);
 
-const ambientLight = new THREE.AmbientLight(0xffffff);
-scene.add(pointLight, ambientLight);
+const pointLight2 = new THREE.PointLight(0xffffff, 200, 2000, 1);
+pointLight2.castShadow = true;
+pointLight2.position.set(-5, 5, -10);
 
-// const lightHelper = new THREE.PointLightHelper(pointLight);
-// const gridHelper = new THREE.GridHelper(200, 50);
-// scene.add(lightHelper, gridHelper);
+const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+scene.add(pointLight, pointLight2, ambientLight);
+
+
+const spotLight = new THREE.SpotLight(0x00ff00, 2000,);
+spotLight.position.set(2, 2, 3);
+// spotLight.map = new THREE.TextureLoader().load( url );
+
+spotLight.castShadow = true;
+const spotLight2 = new THREE.SpotLight(0xff00ff, 2000,);
+spotLight2.position.set(-2, 2, -3);
+// spotLight.map = new THREE.TextureLoader().load( url );
+
+spotLight2.castShadow = true;
+
+// spotLight.shadow.mapSize.width = 1024;
+// spotLight.shadow.mapSize.height = 1024;
+
+spotLight.shadow.camera.near = 500;
+spotLight.shadow.camera.far = 4000;
+spotLight.shadow.camera.fov = 30;
+
+scene.add(spotLight, spotLight2);
+
+//helpers
+const lightHelper = new THREE.PointLightHelper(pointLight);
+const lightHelper2 = new THREE.PointLightHelper(pointLight2);
+const spotLightHelper = new THREE.SpotLightHelper(spotLight)
+const spotLightHelper2 = new THREE.SpotLightHelper(spotLight2)
+const gridHelper = new THREE.GridHelper(200, 50);
+scene.add(lightHelper, gridHelper, lightHelper2, spotLightHelper, spotLightHelper2);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
-function addStar() {
-  const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-  const star = new THREE.Mesh(geometry, material);
+// function addStar() {
+//   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+//   const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+//   const star = new THREE.Mesh(geometry, material);
 
-  const [x, y, z] = Array(3)
-    .fill()
-    .map(() => THREE.MathUtils.randFloatSpread(100));
+//   const [x, y, z] = Array(3)
+//     .fill()
+//     .map(() => THREE.MathUtils.randFloatSpread(100));
 
-  star.position.set(x, y, z);
-  scene.add(star);
-}
-// add the stars 200 times
-Array(200).fill().forEach(addStar);
+//   star.position.set(x, y, z);
+//   scene.add(star);
+// }
+// // add the stars 200 times
+// Array(200).fill().forEach(addStar);
 
 //moon
 
@@ -140,16 +189,16 @@ function moveCamera() {
 
 document.body.onscroll = moveCamera
 
-
-const spaceTexture = new THREE.TextureLoader().load("newSpace.jpg");
-//fix color issue
-spaceTexture.colorSpace = THREE.SRGBColorSpace;
-scene.background = spaceTexture;
+// background
+// const spaceTexture = new THREE.TextureLoader().load("newSpace.jpg");
+// //fix color issue
+// spaceTexture.colorSpace = THREE.SRGBColorSpace;
+// scene.background = spaceTexture;
 
 
 const clock = new THREE.Clock();
 function animate() {
-  
+
   requestAnimationFrame(animate);
 
   // torus.rotation.x += 0.01;
@@ -161,9 +210,9 @@ function animate() {
   // moon.rotation.y += 0.01;
 
   controls.update();
-  
-  
-  if (mixer) 
+
+
+  if (mixer)
     mixer.update(clock.getDelta());
 
   renderer.render(scene, camera);
